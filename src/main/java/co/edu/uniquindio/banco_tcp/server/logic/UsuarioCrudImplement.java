@@ -105,4 +105,20 @@ public class UsuarioCrudImplement implements UsuarioCrud {
 
 
     }
+
+    @Override
+    public String editarUsuario(String clave, String nombre, String cedula) {
+
+        for(Usuario usuario : dataBase.getListaUsuarios()){
+
+            if(usuario.getCedula().equalsIgnoreCase(cedula)){
+
+                usuario.setNombre(nombre);
+                usuario.getCuenta().setClave(clave);
+                return "exito:"+nombre;
+
+            }
+        }
+        return "fracaso";
+    }
 }

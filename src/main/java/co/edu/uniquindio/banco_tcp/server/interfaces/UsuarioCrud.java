@@ -9,4 +9,6 @@ public interface UsuarioCrud {
     boolean existeUsuario(String cedula);
 
     String eliminarUsuario(String cedula);
+
+    String editarUsuario(String clave, String nombre, String cedula);
 }

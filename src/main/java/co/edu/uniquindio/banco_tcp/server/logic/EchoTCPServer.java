@@ -74,6 +74,10 @@ public class EchoTCPServer {
             case "retiro":
                 response = serv.retirarDinero(cadena[1],Double.parseDouble(cadena[2]));
                 break;
+
+            case "edicion":
+                response = serv.editarDatos(cadena[1],cadena[2],cadena[3]);
+                break;
         }
 
         return response;

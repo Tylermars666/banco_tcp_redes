@@ -70,6 +70,11 @@ public class ServidorApp {
 
     }
 
+    public String editarDatos(String claveNueva, String nombreNuevo,String cedula){
+
+        return userCrud.editarUsuario(claveNueva, nombreNuevo, cedula);
+    }
+
     //AQUÍ VOY A TENER MÉTODOS COMO BUSCAR USUARIO, BUSCAR CUENTA, ACTUALIZAR SALDO, ETC, Y USARÉ LAS IMPLEMENTACIONES CRUD
 
 }

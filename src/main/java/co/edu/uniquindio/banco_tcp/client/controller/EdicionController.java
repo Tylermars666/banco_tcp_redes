@@ -1,5 +1,6 @@
 package co.edu.uniquindio.banco_tcp.client.controller;
 
+import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import co.edu.uniquindio.banco_tcp.client.model.UsuarioActual;
 import javafx.event.ActionEvent;
@@ -16,6 +17,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EdicionController implements Initializable {
+
+    InterfazPrincipalController interfazPrincipalController;
 
     private EchoTCPClient cliente;
 
@@ -35,7 +38,30 @@ public class EdicionController implements Initializable {
     private TextField txtDatosNuevos;
 
     @FXML
-    void actualizarDatos(ActionEvent event) {
+    void actualizarDatos(ActionEvent event) throws Exception {
+
+        try{
+            String claveNueva = this.txtClaveNueva.getText();
+            String nombreNuevo = this.txtDatosNuevos.getText();
+            if(claveNueva.equalsIgnoreCase("")) throw new CamposVaciosException();
+            if(nombreNuevo.equalsIgnoreCase("")) nombreNuevo = UsuarioActual.getInstance().getNombre();
+            cliente.sendRequest("edicion:"+claveNueva+":"+nombreNuevo+":"+UsuarioActual.getInstance().getCedula());
+            String response = cliente.readResponse();   //RECIBE DATOS ACTUALIZADOS PARA SETTEAR EN EL USUARIO ACTUAL A TRAVÉS DEL UPDATE
+            String [] cadena = response.split(":");
+
+            if(cadena[0].equalsIgnoreCase("exito")){
+
+                interfazPrincipalController.updateValues(cadena[1],UsuarioActual.getInstance().getSaldo());
+                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION, "Datos actualizados con éxito",ButtonType.OK);
+                alerta.setHeaderText(null);
+                alerta.setTitle("Actualización exitosa");
+                alerta.showAndWait();
+            }
+
+        }catch (CamposVaciosException ce){
+
+            ce.printMessage();
+        }
 
     }
 
@@ -51,10 +77,12 @@ public class EdicionController implements Initializable {
             alerta.setTitle("Confirmación de cancelación");
             alerta.setHeaderText(null);
             alerta.showAndWait();
+
+            for(Stage stage : UsuarioActual.getInstance().getListaStages()){
+                stage.close();
+            }
         }
-        for(Stage stage : UsuarioActual.getInstance().getListaStages()){
-            stage.close();
-        }
+
 
         //LOGICA PARA HACER PETICIÓN, ELIMINAR CUENTA DE LA BASE DE DATOS
         //ELIMINAR LOS DATOS DEL USUARIO ACTUAL Y CERRAR TODAS LAS VENTANAS A EXCEPCIÓN DE LA VENTANA LOGIN
@@ -66,5 +94,9 @@ public class EdicionController implements Initializable {
 
         this.cliente = EchoTCPClient.getInstance();
 
+    }
+
+    public void updateListener(InterfazPrincipalController interfazPrincipalController){
+        this.interfazPrincipalController=interfazPrincipalController;
     }
 }
