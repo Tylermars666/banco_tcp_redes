@@ -83,10 +83,6 @@ public class EdicionController implements Initializable {
             }
         }
 
-
-        //LOGICA PARA HACER PETICIÓN, ELIMINAR CUENTA DE LA BASE DE DATOS
-        //ELIMINAR LOS DATOS DEL USUARIO ACTUAL Y CERRAR TODAS LAS VENTANAS A EXCEPCIÓN DE LA VENTANA LOGIN
-
     }
 
     @Override

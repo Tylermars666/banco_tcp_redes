@@ -51,6 +51,7 @@ public class InterfazPrincipalController implements Initializable{
         UsuarioActual.getInstance().getListaStages().add(stageEditar);
 
         EdicionController controller = loader.getController();
+        controller.updateListener(this);
         stageEditar.show();
 
     }
