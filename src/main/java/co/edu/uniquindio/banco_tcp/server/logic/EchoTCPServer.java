@@ -69,6 +69,11 @@ public class EchoTCPServer {
 
             case "cancelar":
                 response = serv.cancelaraCuentaUsuario(cadena[1]);  //cancelar, cedula
+                break;
+
+            case "retiro":
+                response = serv.retirarDinero(cadena[1],Double.parseDouble(cadena[2]));
+                break;
         }
 
         return response;

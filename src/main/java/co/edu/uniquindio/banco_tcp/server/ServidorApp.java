@@ -64,6 +64,12 @@ public class ServidorApp {
 
     }
 
+    public String retirarDinero(String numCuenta, double cantidad){
+
+        return transCrud.realizarRetiro(numCuenta,cantidad);
+
+    }
+
     //AQUÍ VOY A TENER MÉTODOS COMO BUSCAR USUARIO, BUSCAR CUENTA, ACTUALIZAR SALDO, ETC, Y USARÉ LAS IMPLEMENTACIONES CRUD
 
 }

@@ -47,6 +47,11 @@ public class RetiroController implements Initializable {
 
             interfazPrincipal.updateValues(UsuarioActual.getInstance().getNombre(), Double.parseDouble(respuestaRetiro));
 
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION, "Retiro exitoso, saldo actual: " + respuestaRetiro,ButtonType.OK);
+            alerta.setHeaderText(null);
+            alerta.setTitle("Confirmación de retiro");
+            alerta.showAndWait();
+
         }catch (CamposVaciosException | SaldoInsuficienteException e){
 
             if(e instanceof CamposVaciosException){
