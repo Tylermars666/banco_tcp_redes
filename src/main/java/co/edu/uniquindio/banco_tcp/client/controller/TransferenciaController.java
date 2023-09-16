@@ -23,6 +23,8 @@ public class TransferenciaController {
     @FXML
     void transferirDinero(ActionEvent event) {
 
+
+
     }
 
 }
