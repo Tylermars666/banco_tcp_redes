@@ -1,6 +1,8 @@
 package co.edu.uniquindio.banco_tcp.client.controller;
 
+import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
 import co.edu.uniquindio.banco_tcp.client.exception.SaldoInicialException;
+import co.edu.uniquindio.banco_tcp.client.exception.SaldoInsuficienteException;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,6 +47,7 @@ public class RegistroController implements Initializable {
             double capitalInicial = Double.parseDouble(this.txtSaldoInicial.getText());
 
             if(capitalInicial<50000) throw new SaldoInicialException();
+            if(nombre.equalsIgnoreCase("") || cedula.equalsIgnoreCase("") || clave.equalsIgnoreCase("")) throw new CamposVaciosException();
 
             try {
                 cliente.sendRequest("registro"+":"+nombre+":"+cedula+":"+clave+":"+capitalInicial);    //registro:nombre:cedula:clave:saldo
@@ -85,9 +88,15 @@ public class RegistroController implements Initializable {
             }
 
 
-        }catch (SaldoInicialException se){
+        }catch (SaldoInicialException | CamposVaciosException e){
 
-            se.printMessage();
+            if( e instanceof SaldoInicialException){
+                SaldoInicialException se = (SaldoInicialException) e;
+                se.printMessage();
+            } else if (e instanceof CamposVaciosException) {
+                CamposVaciosException ce = (CamposVaciosException) e;
+                ce.printMessage();
+            }
         }
 
 
