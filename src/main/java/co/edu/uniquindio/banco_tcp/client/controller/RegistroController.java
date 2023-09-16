@@ -1,5 +1,6 @@
 package co.edu.uniquindio.banco_tcp.client.controller;
 
+import co.edu.uniquindio.banco_tcp.client.exception.SaldoInicialException;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,49 +37,60 @@ public class RegistroController implements Initializable {
     @FXML
     void registrarCliente(ActionEvent event) {
 
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        String nombre = this.txtNombreApellido.getText();
-        String cedula = this.txtCedula.getText();
-        String clave = this.txtClave.getText();
-        double capitalInicial = Double.parseDouble(this.txtSaldoInicial.getText());
+        try{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            String nombre = this.txtNombreApellido.getText();
+            String cedula = this.txtCedula.getText();
+            String clave = this.txtClave.getText();
+            double capitalInicial = Double.parseDouble(this.txtSaldoInicial.getText());
 
-        try {
-            cliente.sendRequest("registro"+":"+nombre+":"+cedula+":"+clave+":"+capitalInicial);    //registro:nombre:cedula:clave:saldo
-            String response = cliente.readResponse();
-            String cadena [] = response.split(":");
+            if(capitalInicial<50000) throw new SaldoInicialException();
 
-            switch (cadena[0]){
+            try {
+                cliente.sendRequest("registro"+":"+nombre+":"+cedula+":"+clave+":"+capitalInicial);    //registro:nombre:cedula:clave:saldo
+                String response = cliente.readResponse();
+                String cadena [] = response.split(":");
 
-                case "existe":
-                    alerta.setTitle("Error");
-                    alerta.setHeaderText(null);
-                    alerta.setContentText("Ya existe un usuario con la cedula " + cedula);
-                    alerta.showAndWait();
-                    break;
+                switch (cadena[0]){
 
-                case "registrado":
-                    alerta.setAlertType(Alert.AlertType.CONFIRMATION);
-                    alerta.setTitle("Registro Exitoso");
-                    alerta.setHeaderText(null);
-                    alerta.setContentText("Registro realizado satisfactoriamente \n" +
-                            "Usuario: " + cadena[1] + "\n" +
-                            "No. Cuenta: " + cadena[2] + "\n" +
-                            "Saldo Inicial: " + cadena[3]);
-                    alerta.showAndWait();
-                    break;
+                    case "existe":
+                        alerta.setTitle("Error");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("Ya existe un usuario con la cedula " + cedula);
+                        alerta.showAndWait();
+                        break;
 
-                default:
-                    alerta.setTitle("Error");
-                    alerta.setHeaderText(null);
-                    alerta.setContentText("Verifique que los datos sean correctos e intente nuevamente");
-                    alerta.showAndWait();
-                    break;
+                    case "registrado":
+                        alerta.setAlertType(Alert.AlertType.CONFIRMATION);
+                        alerta.setTitle("Registro Exitoso");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("Registro realizado satisfactoriamente \n" +
+                                "Usuario: " + cadena[1] + "\n" +
+                                "No. Cuenta: " + cadena[2] + "\n" +
+                                "Saldo Inicial: " + cadena[3]);
+                        alerta.showAndWait();
+                        break;
+
+                    default:
+                        alerta.setTitle("Error");
+                        alerta.setHeaderText(null);
+                        alerta.setContentText("Verifique que los datos sean correctos e intente nuevamente");
+                        alerta.showAndWait();
+                        break;
+                }
+
+            }catch (IOException ioe){
+
+                ioe.printStackTrace();
             }
 
-        }catch (IOException ioe){
 
-            ioe.printStackTrace();
+        }catch (SaldoInicialException se){
+
+            se.printMessage();
         }
+
+
 
 
     }
