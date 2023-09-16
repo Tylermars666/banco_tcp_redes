@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="378.0" style="-fx-background-color: #006523;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.banco_tcp.client.controller.RegistroController">
+   <children>
+      <ImageView fx:id="imgUniqui" fitHeight="72.0" fitWidth="61.0" layoutX="21.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/UNIQUI.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtSaldoInicial" layoutX="189.0" layoutY="155.0" prefHeight="41.0" prefWidth="154.0" promptText="Ej: 20000">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="96.0" layoutY="39.0" text="Registro" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCedula" layoutX="189.0" layoutY="288.0" prefHeight="41.0" prefWidth="154.0" promptText="Ej: 1094954673">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtNombreApellido" layoutX="189.0" layoutY="224.0" prefHeight="41.0" prefWidth="154.0" promptText="Ej: Armando Paredes">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnRegistrarme" layoutX="123.0" layoutY="468.0" mnemonicParsing="false" onAction="#registrarCliente" prefHeight="48.0" prefWidth="133.0" text="Registrarme">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label layoutX="21.0" layoutY="166.0" text="Saldo inicial" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="235.0" text="Nombre y apellido" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="299.0" text="Número de cédula" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="369.0" text="Contraseña" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txtClave" layoutX="190.0" layoutY="355.0" prefHeight="41.0" prefWidth="149.0" />
+   </children>
+</Pane>

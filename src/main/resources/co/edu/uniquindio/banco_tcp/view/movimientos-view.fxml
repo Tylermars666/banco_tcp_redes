@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.banco_tcp.client.controller.MovimientosController">
+    <children>
+        <ImageView fx:id="imgUniqui" fitHeight="116.0" fitWidth="142.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/UNIQUI_VERDE.png" />
+            </image>
+        </ImageView>
+      <TableView fx:id="tblMovimientos" layoutX="42.0" layoutY="174.0" prefHeight="239.0" prefWidth="295.0">
+        <columns>
+          <TableColumn fx:id="montoColumn" prefWidth="102.40008544921875" text="Monto" />
+          <TableColumn fx:id="cuentaOrigenColumn" prefWidth="100.7999267578125" text="Cuenta Origen" />
+            <TableColumn fx:id="fechaColumn" prefWidth="92.0" text="Fecha" />
+        </columns>
+      </TableView>
+    </children>
+</Pane>
