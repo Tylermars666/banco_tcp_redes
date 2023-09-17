@@ -46,7 +46,7 @@ public class InterfazPrincipalController implements Initializable{
 
         Scene scene = new Scene(loader.load());
         Stage stageEditar = new Stage();
-        stageEditar.setTitle("Edición");
+        stageEditar.setTitle("Actualizar datos de cuenta");
         stageEditar.setScene(scene);
         UsuarioActual.getInstance().getListaStages().add(stageEditar);
 

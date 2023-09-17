@@ -23,6 +23,15 @@ public class TransferenciaController {
     @FXML
     void transferirDinero(ActionEvent event) {
 
+        try{
+            String cuentaDestino = this.txtCuentaDestino.getText();
+            String valorTransferencia = this.txtValorTransferencia.getText();
+
+        }catch (Exception e){
+
+
+
+        }
 
 
     }
