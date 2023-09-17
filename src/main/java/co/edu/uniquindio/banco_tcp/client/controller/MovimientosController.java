@@ -3,11 +3,13 @@ package co.edu.uniquindio.banco_tcp.client.controller;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import co.edu.uniquindio.banco_tcp.client.model.Transaccion;
 import co.edu.uniquindio.banco_tcp.client.model.UsuarioActual;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -30,7 +32,7 @@ public class MovimientosController implements Initializable {
     private TableColumn<?, ?> montoColumn;
 
     @FXML
-    private TableView<?> tblMovimientos;
+    private TableView<Transaccion> tblMovimientos;
 
     ObservableList<Transaccion> movimientos;
 
@@ -53,6 +55,15 @@ public class MovimientosController implements Initializable {
                 UsuarioActual.getInstance().getListaTransacciones().add(new Transaccion(cadena[1],Double.parseDouble(cadena[2]),cadena[3]));
                 cont+=1;
             }
+
+            movimientos = FXCollections.observableArrayList();
+            this.cuentaOrigenColumn.setCellValueFactory(new PropertyValueFactory<>("cuentaOrigen"));
+            this.montoColumn.setCellValueFactory(new PropertyValueFactory<>("valor"));
+            this.fechaColumn.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+
+            this.movimientos.addAll(UsuarioActual.getInstance().getListaTransacciones());
+            this.tblMovimientos.setItems(movimientos);
+
 
 
 
