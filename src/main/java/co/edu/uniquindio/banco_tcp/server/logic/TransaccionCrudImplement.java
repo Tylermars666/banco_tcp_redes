@@ -3,6 +3,7 @@ package co.edu.uniquindio.banco_tcp.server.logic;
 import co.edu.uniquindio.banco_tcp.server.database.DataBase;
 import co.edu.uniquindio.banco_tcp.server.interfaces.TransaccionCrud;
 import co.edu.uniquindio.banco_tcp.server.model.Cuenta;
+import co.edu.uniquindio.banco_tcp.server.model.Transaccion;
 
 public class TransaccionCrudImplement implements TransaccionCrud {
 
@@ -62,6 +63,7 @@ public class TransaccionCrudImplement implements TransaccionCrud {
 
             origen.setSaldo(origen.getSaldo()-cantidad);
             destino.setSaldo(destino.getSaldo()+cantidad);
+            destino.getListaTransacciones().add(new Transaccion(origen.getNumeroCuenta(),cantidad));
             return "exito:"+(origen.getSaldo()-cantidad);
 
         }

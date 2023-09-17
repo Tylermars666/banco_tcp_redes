@@ -6,22 +6,22 @@ public class Transaccion {
 
     private LocalDate fecha;
     private double valor;
-    private String cuentaDestino;
+    private String cuentaOrigen;
 
-    public Transaccion(String cuentaDestino, double valor){
+    public Transaccion(String cuentaOrigen, double valor){
 
        fecha=LocalDate.now();
-       this.cuentaDestino=cuentaDestino;
+       this.cuentaOrigen =cuentaOrigen;
        this.valor=valor;
 
     }
 
-    public String getCuentaDestino() {
-        return cuentaDestino;
+    public String getCuentaOrigen() {
+        return cuentaOrigen;
     }
 
-    public void setCuentaDestino(String cuentaDestino) {
-        this.cuentaDestino = cuentaDestino;
+    public void setCuentaOrigen(String cuentaOrigen) {
+        this.cuentaOrigen = cuentaOrigen;
     }
 
     public double getValor() {
