@@ -46,12 +46,12 @@ public class MovimientosController implements Initializable {
 
             while(true){
 
-                cliente.sendRequest("movimientos:"+cont);
+                cliente.sendRequest("movimientos:"+UsuarioActual.getInstance().getNumCuenta()+":"+cont);
                 String response = cliente.readResponse();
                 String [] cadena = response.split(":");
 
                 if(cadena[0].equalsIgnoreCase("end")) break;
-
+                                                                            //numCuentaOrigen, valor, fecha
                 UsuarioActual.getInstance().getListaTransacciones().add(new Transaccion(cadena[1],Double.parseDouble(cadena[2]),cadena[3]));
                 cont+=1;
             }

@@ -81,6 +81,11 @@ public class EchoTCPServer {
 
             case "transferencia":
                 response = serv.realizarTransferencia(cadena[1],cadena[2],Double.parseDouble(cadena[3]));
+                break;
+
+            case "movimientos":
+                response = serv.retornarTransacciones(cadena[1],Integer.parseInt(cadena[2]));
+                break;
         }
 
         return response;

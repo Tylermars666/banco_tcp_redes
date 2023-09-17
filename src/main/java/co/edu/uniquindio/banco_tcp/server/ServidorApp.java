@@ -82,6 +82,11 @@ public class ServidorApp {
 
     }
 
+    public String retornarTransacciones(String numCuenta, int contador){
+
+        return cuentaCrud.retornarTransacciones(numCuenta,contador);
+    }
+
     //AQUÍ VOY A TENER MÉTODOS COMO BUSCAR USUARIO, BUSCAR CUENTA, ACTUALIZAR SALDO, ETC, Y USARÉ LAS IMPLEMENTACIONES CRUD
 
 }

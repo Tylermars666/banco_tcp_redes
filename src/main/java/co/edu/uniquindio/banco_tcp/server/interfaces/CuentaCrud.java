@@ -7,5 +7,6 @@ public interface CuentaCrud {
 
     boolean eliminarCuenta(String cedula);
     Cuenta buscarCuenta(String numCuenta);
+    String retornarTransacciones(String numCuenta, int contador);
 
 }

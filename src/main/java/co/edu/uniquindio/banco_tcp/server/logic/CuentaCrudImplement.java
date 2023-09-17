@@ -3,6 +3,9 @@ package co.edu.uniquindio.banco_tcp.server.logic;
 import co.edu.uniquindio.banco_tcp.server.database.DataBase;
 import co.edu.uniquindio.banco_tcp.server.interfaces.CuentaCrud;
 import co.edu.uniquindio.banco_tcp.server.model.Cuenta;
+import co.edu.uniquindio.banco_tcp.server.model.Transaccion;
+
+import java.time.LocalDate;
 
 public class CuentaCrudImplement implements CuentaCrud {
 
@@ -56,5 +59,31 @@ public class CuentaCrudImplement implements CuentaCrud {
             }
         }
         return null;
+    }
+
+    public String retornarTransacciones(String numCuenta, int contador){
+
+        String origen="";
+        double valor=0;
+        LocalDate fecha = null;
+
+        Cuenta c = buscarCuenta(numCuenta);
+
+        if(c==null) return "end";
+
+        try{
+            Transaccion trans = c.getListaTransacciones().get(contador);
+            origen = trans.getCuentaOrigen();
+            valor = trans.getValor();
+            fecha = trans.getFecha();
+
+            return "continue:"+origen+":"+valor+":"+fecha;
+        }catch (Exception e){
+
+            return "end";
+
+        }
+
+
     }
 }

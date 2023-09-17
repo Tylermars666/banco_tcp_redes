@@ -23,8 +23,8 @@ public class DataBase {
         Usuario victor = new Usuario("victor","94225695","1234",60000);
         Cuenta cuentaOmar = omar.getCuenta();
         Cuenta cuentaVictor = victor.getCuenta();
-        Transaccion trans = new Transaccion(victor.getCuenta().getNumeroCuenta(),20000);
-        cuentaOmar.getListaTransacciones().add(trans);
+        Transaccion trans = new Transaccion(cuentaOmar.getNumeroCuenta(),20000);
+        cuentaVictor.getListaTransacciones().add(trans);
 
         this.listaUsuarios.add(omar);
         this.listaUsuarios.add(victor);
