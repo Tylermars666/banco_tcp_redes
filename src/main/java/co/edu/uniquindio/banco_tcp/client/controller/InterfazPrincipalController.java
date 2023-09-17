@@ -83,6 +83,7 @@ public class InterfazPrincipalController implements Initializable{
         stage.setScene(scene);
 
         TransferenciaController controller = loader.getController();
+        controller.updateListener(this);
         stage.show();
 
     }

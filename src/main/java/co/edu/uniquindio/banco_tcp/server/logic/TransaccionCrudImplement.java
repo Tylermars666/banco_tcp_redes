@@ -43,6 +43,7 @@ public class TransaccionCrudImplement implements TransaccionCrud {
                 double saldoActual = cuenta.getSaldo();
                 cuenta.setSaldo(saldoActual-cantidad);
                 saldoActualizado = String.valueOf(saldoActual-cantidad);
+                break;
 
             }
         }
@@ -51,6 +52,18 @@ public class TransaccionCrudImplement implements TransaccionCrud {
 
     @Override
     public String realizarTransferencia(String numCuentaOrigen,String numCuentaDestino, double cantidad) {
-        return null;
+
+        Cuenta origen = CuentaCrudImplement.getInstance().buscarCuenta(numCuentaOrigen);
+        Cuenta destino = CuentaCrudImplement.getInstance().buscarCuenta(numCuentaDestino);
+
+        if (origen == null || destino == null){
+            return "fracaso";
+        }else {
+
+            origen.setSaldo(origen.getSaldo()-cantidad);
+            destino.setSaldo(destino.getSaldo()+cantidad);
+            return "exito:"+(origen.getSaldo()-cantidad);
+
+        }
     }
 }

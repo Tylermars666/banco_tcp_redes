@@ -7,6 +7,7 @@ import co.edu.uniquindio.banco_tcp.server.logic.CuentaCrudImplement;
 import co.edu.uniquindio.banco_tcp.server.logic.EchoTCPServer;
 import co.edu.uniquindio.banco_tcp.server.logic.TransaccionCrudImplement;
 import co.edu.uniquindio.banco_tcp.server.logic.UsuarioCrudImplement;
+import co.edu.uniquindio.banco_tcp.server.model.Cuenta;
 
 public class ServidorApp {
 
@@ -73,6 +74,12 @@ public class ServidorApp {
     public String editarDatos(String claveNueva, String nombreNuevo,String cedula){
 
         return userCrud.editarUsuario(claveNueva, nombreNuevo, cedula);
+    }
+
+    public String realizarTransferencia(String cuentaOrigen,String cuentaDestino, double cantidad){
+
+        return transCrud.realizarTransferencia(cuentaOrigen,cuentaDestino,cantidad);
+
     }
 
     //AQUÍ VOY A TENER MÉTODOS COMO BUSCAR USUARIO, BUSCAR CUENTA, ACTUALIZAR SALDO, ETC, Y USARÉ LAS IMPLEMENTACIONES CRUD

@@ -1,7 +1,8 @@
 package co.edu.uniquindio.banco_tcp.client.interfaces;
 
-public interface UpdateListener {
+import co.edu.uniquindio.banco_tcp.client.controller.InterfazPrincipalController;
 
-    public void updateListener(Object object);
+public interface UpdateListener {
+    void updateListener(InterfazPrincipalController interfazPrincipalController);
 
 }

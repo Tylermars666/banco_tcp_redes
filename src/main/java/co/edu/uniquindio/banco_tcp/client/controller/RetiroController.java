@@ -1,8 +1,8 @@
 package co.edu.uniquindio.banco_tcp.client.controller;
 
 import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
-import co.edu.uniquindio.banco_tcp.client.exception.SaldoInicialException;
 import co.edu.uniquindio.banco_tcp.client.exception.SaldoInsuficienteException;
+import co.edu.uniquindio.banco_tcp.client.interfaces.UpdateListener;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import co.edu.uniquindio.banco_tcp.client.model.UsuarioActual;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RetiroController implements Initializable {
+public class RetiroController implements Initializable, UpdateListener {
 
     InterfazPrincipalController interfazPrincipal;
 

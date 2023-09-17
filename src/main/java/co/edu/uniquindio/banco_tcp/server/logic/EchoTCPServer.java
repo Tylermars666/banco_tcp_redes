@@ -78,6 +78,9 @@ public class EchoTCPServer {
             case "edicion":
                 response = serv.editarDatos(cadena[1],cadena[2],cadena[3]);
                 break;
+
+            case "transferencia":
+                response = serv.realizarTransferencia(cadena[1],cadena[2],Double.parseDouble(cadena[3]));
         }
 
         return response;

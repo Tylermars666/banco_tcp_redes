@@ -44,4 +44,17 @@ public class CuentaCrudImplement implements CuentaCrud {
         }
         return false;
     }
+
+    @Override
+    public Cuenta buscarCuenta(String numCuenta) {
+
+        for(Cuenta c : dataBase.getListaCuentas()){
+
+            if(c.getNumeroCuenta().equalsIgnoreCase(numCuenta)){
+
+                return c;
+            }
+        }
+        return null;
+    }
 }

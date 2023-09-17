@@ -1,6 +1,7 @@
 package co.edu.uniquindio.banco_tcp.client.controller;
 
 import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
+import co.edu.uniquindio.banco_tcp.client.interfaces.UpdateListener;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import co.edu.uniquindio.banco_tcp.client.model.UsuarioActual;
 import javafx.event.ActionEvent;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EdicionController implements Initializable {
+public class EdicionController implements Initializable, UpdateListener {
 
     InterfazPrincipalController interfazPrincipalController;
 
