@@ -12,6 +12,7 @@ public class UsuarioActual {                         //Clase para albergar los d
     private String numCuenta;
     private String cedula;
     private ArrayList<Stage> listaStages = new ArrayList<>();
+    private ArrayList<Transaccion> listaTransacciones = new ArrayList<>();
 
     private UsuarioActual (){
 
@@ -64,4 +65,6 @@ public class UsuarioActual {                         //Clase para albergar los d
     public String getCedula(){
         return cedula;
     }
+
+    public ArrayList<Transaccion> getListaTransacciones(){return listaTransacciones;}
 }
