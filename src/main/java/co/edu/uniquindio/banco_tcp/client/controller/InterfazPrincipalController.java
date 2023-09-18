@@ -91,6 +91,16 @@ public class InterfazPrincipalController implements Initializable{
     @FXML
     void verMovimientos(MouseEvent event) throws Exception {
 
+        if(UsuarioActual.getInstance().getListaTransacciones().size()!=0){
+
+            for(int i = 0 ; i<=UsuarioActual.getInstance().getListaTransacciones().size()-1; i++){
+
+                UsuarioActual.getInstance().getListaTransacciones().remove(i);
+
+            }
+
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/banco_tcp/view/movimientos-view.fxml"));
 
         Scene scene = new Scene(loader.load());
@@ -109,12 +119,6 @@ public class InterfazPrincipalController implements Initializable{
         this.lblNombre.setText(UsuarioActual.getInstance().getNombre().toUpperCase());
         this.lblNumeroCuenta.setText(UsuarioActual.getInstance().getNumCuenta());
         this.lblSaldo.setText(String.valueOf(UsuarioActual.getInstance().getSaldo()));
-
-        for(int i = 0 ; i<=UsuarioActual.getInstance().getListaTransacciones().size()-1; i++){
-
-            UsuarioActual.getInstance().getListaTransacciones().remove(i);
-
-        }
 
     }
 
