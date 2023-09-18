@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
 
             cliente.sendRequest("login"+":"+cedula+":"+clave);
             String response = cliente.readResponse();
-            String cadena [] = response.split(":");                             //Se espera un true:seguido:de:otros:parametros
+            String [] cadena = response.split(":");                             //Se espera un true:seguido:de:otros:parametros
 
             if(Boolean.parseBoolean(cadena[0])){
 
