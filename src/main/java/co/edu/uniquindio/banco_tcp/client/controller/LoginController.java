@@ -1,5 +1,6 @@
 package co.edu.uniquindio.banco_tcp.client.controller;
 
+import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import co.edu.uniquindio.banco_tcp.client.model.UsuarioActual;
 import javafx.event.ActionEvent;
@@ -38,10 +39,14 @@ public class LoginController implements Initializable {
     @FXML
     void ingresar(ActionEvent event) {
 
-        String cedula = this.txtCedula.getText();
-        String clave = this.txtContrasenia.getText();
+
 
         try{
+
+            String cedula = this.txtCedula.getText();
+            String clave = this.txtContrasenia.getText();
+
+            if(cedula.equalsIgnoreCase("") || clave.equalsIgnoreCase("")) throw  new CamposVaciosException();
 
             cliente.sendRequest("login"+":"+cedula+":"+clave);
             String response = cliente.readResponse();
@@ -79,9 +84,12 @@ public class LoginController implements Initializable {
 
             }
 
-        }catch (IOException ioe){
+        }catch (Exception e){
 
-            ioe.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Verifique los datos e intente nuevamente", ButtonType.OK);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.showAndWait();
         }
 
     }
