@@ -1,6 +1,5 @@
 package co.edu.uniquindio.banco_tcp.client.model;
 
-import java.time.LocalDate;
 
 public class Transaccion {
 

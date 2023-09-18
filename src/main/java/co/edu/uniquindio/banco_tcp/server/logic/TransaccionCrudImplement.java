@@ -64,7 +64,7 @@ public class TransaccionCrudImplement implements TransaccionCrud {
             origen.setSaldo(origen.getSaldo()-cantidad);
             destino.setSaldo(destino.getSaldo()+cantidad);
             destino.getListaTransacciones().add(new Transaccion(origen.getNumeroCuenta(),cantidad));
-            return "exito:"+(origen.getSaldo()-cantidad);
+            return "exito:"+(origen.getSaldo());
 
         }
     }

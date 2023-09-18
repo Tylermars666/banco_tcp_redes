@@ -110,6 +110,12 @@ public class InterfazPrincipalController implements Initializable{
         this.lblNumeroCuenta.setText(UsuarioActual.getInstance().getNumCuenta());
         this.lblSaldo.setText(String.valueOf(UsuarioActual.getInstance().getSaldo()));
 
+        for(int i = 0 ; i<=UsuarioActual.getInstance().getListaTransacciones().size()-1; i++){
+
+            UsuarioActual.getInstance().getListaTransacciones().remove(i);
+
+        }
+
     }
 
     public void updateValues(String nombre, double saldo){
