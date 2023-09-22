@@ -65,10 +65,13 @@ public class RegistroController implements Initializable {
             String nombre = this.txtNombreApellido.getText();
             String cedula = this.txtCedula.getText();
             String clave = this.txtClave.getText();
-            double capitalInicial = Double.parseDouble(this.txtSaldoInicial.getText());
+            String capital = this.txtSaldoInicial.getText();
+
+            if(nombre.equalsIgnoreCase("") || cedula.equalsIgnoreCase("") || clave.equalsIgnoreCase("") || capital.equalsIgnoreCase("")) throw new CamposVaciosException();
+            double capitalInicial = Double.parseDouble(capital);
+            if(capitalInicial<50000) throw new SaldoInicialException();
 
             if(this.metodoSeleccionado == null) throw new CamposVaciosException();
-
             if(this.metodoSeleccionado.equalsIgnoreCase("cesar")){
 
                 claveCesar = this.txtClaveCesar.getText();
@@ -78,8 +81,8 @@ public class RegistroController implements Initializable {
                 claveCesar = "0";
             }
 
-            if(capitalInicial<50000) throw new SaldoInicialException();
-            if(nombre.equalsIgnoreCase("") || cedula.equalsIgnoreCase("") || clave.equalsIgnoreCase("")) throw new CamposVaciosException();
+
+
 
             try {
                 cliente.sendRequest("registro"+":"+nombre+":"+cedula+":"+clave+":"+capitalInicial+":"+claveCesar);    //registro:nombre:cedula:clave:saldo
