@@ -19,6 +19,12 @@ public class RegistroController implements Initializable {
     private EchoTCPClient cliente;
 
     @FXML
+    private TextField txtClaveCesar;
+
+    @FXML
+    private ComboBox<?> cmbMetodoCifrado;
+
+    @FXML
     private Button btnRegistrarme;
 
     @FXML
@@ -35,6 +41,11 @@ public class RegistroController implements Initializable {
 
     @FXML
     private TextField txtSaldoInicial;
+
+    @FXML
+    void seleccionarMetodoCifrado(ActionEvent event) {
+
+    }
 
     @FXML
     void registrarCliente(ActionEvent event) {
