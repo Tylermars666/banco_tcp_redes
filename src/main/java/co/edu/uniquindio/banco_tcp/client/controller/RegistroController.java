@@ -61,10 +61,20 @@ public class RegistroController implements Initializable {
 
         try{
             Alert alerta = new Alert(Alert.AlertType.ERROR);
+            String claveCesar = "0";
             String nombre = this.txtNombreApellido.getText();
             String cedula = this.txtCedula.getText();
             String clave = this.txtClave.getText();
             double capitalInicial = Double.parseDouble(this.txtSaldoInicial.getText());
+
+            if(this.metodoSeleccionado == null) throw new CamposVaciosException();
+
+            if(this.metodoSeleccionado.equalsIgnoreCase("cesar")){
+
+                claveCesar = this.txtClaveCesar.getText();
+                if(claveCesar.equalsIgnoreCase("")) throw new CamposVaciosException();
+
+            }
 
             if(capitalInicial<50000) throw new SaldoInicialException();
             if(nombre.equalsIgnoreCase("") || cedula.equalsIgnoreCase("") || clave.equalsIgnoreCase("")) throw new CamposVaciosException();
