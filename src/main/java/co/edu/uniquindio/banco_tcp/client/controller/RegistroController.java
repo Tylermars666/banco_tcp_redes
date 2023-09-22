@@ -99,10 +99,10 @@ public class RegistroController implements Initializable {
 
                 switch (cadena[0]){
 
-                    case "existe":
+                    case "existente":
                         alerta.setTitle("Error");
                         alerta.setHeaderText(null);
-                        alerta.setContentText("Ya existe un usuario con la cedula " + cedula);
+                        alerta.setContentText("Ya existe un usuario con el número de cédula ingresado");
                         alerta.showAndWait();
                         break;
 
