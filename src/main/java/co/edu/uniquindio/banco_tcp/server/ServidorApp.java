@@ -7,7 +7,6 @@ import co.edu.uniquindio.banco_tcp.server.logic.CuentaCrudImplement;
 import co.edu.uniquindio.banco_tcp.server.logic.EchoTCPServer;
 import co.edu.uniquindio.banco_tcp.server.logic.TransaccionCrudImplement;
 import co.edu.uniquindio.banco_tcp.server.logic.UsuarioCrudImplement;
-import co.edu.uniquindio.banco_tcp.server.model.Cuenta;
 
 public class ServidorApp {
 
