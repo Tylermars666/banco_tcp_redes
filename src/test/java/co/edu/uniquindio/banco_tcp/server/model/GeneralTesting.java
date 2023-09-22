@@ -24,5 +24,26 @@ class GeneralTesting {
         }
 
     }
+
+    @Test
+    public void quitarAstericos(){
+
+        String texto = "mamawebo***";
+        String textoSinAsteriscos = "";
+
+        for(int i = 0; i<texto.length(); i++){
+
+            if(!(texto.charAt(i)=='*')){
+
+                textoSinAsteriscos+=texto.charAt(i);
+
+            }
+
+        }
+
+        System.out.println(textoSinAsteriscos);
+
+
+    }
   
 }

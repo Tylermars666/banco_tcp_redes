@@ -62,4 +62,76 @@ public class Cifrado {
         return textoCesar;                                             //ese String que corresponde a la palabra totalmente encriptada
     }
 
+    public String desencriptarChino(String texto){
+
+        char[][] matrizOriginal = construirMatrizOriginal(texto);  //Con el texto encriptado se procede a construir la matriz original
+        return quitarAstericos(desencriptarMatrizOriginal(matrizOriginal));
+
+    }
+
+    public char[][] construirMatrizOriginal(String texto){
+
+        boolean snake = true;                                    //Al igual que en el método para encriptar, se recorre la matriz
+        int rows = texto.length()/3;                             //en forma de serpiente, pero en este caso en lugar de generar un String
+        char [][] matrizOriginal = new char[3][rows];            //se toma el String encriptado para generar la matriz original
+        int indiceTexto = 0;
+
+        for(int j = rows-1; j>=0; j--){
+
+            if(snake){
+
+                for(int i = 0; i < 3; i++, indiceTexto++){
+
+                    matrizOriginal[i][j] = texto.charAt(indiceTexto);
+
+                }
+                snake = false;
+
+            }else {
+
+                for(int i = 2; i>= 0; i--, indiceTexto++){
+
+                    matrizOriginal[i][j] = texto.charAt(indiceTexto);
+                }
+                snake = true;
+            }
+        }
+        return matrizOriginal;
+    }
+
+    public String desencriptarMatrizOriginal(char[][]matriz){
+
+        int indiceTexto = 0;                                      //Al igual que en el método para encriptar, se recorre
+        String textoOriginal = "";                                //el texto para generar la matriz, pero en este caso
+        int rows = matriz[0].length;                              //se construye el String desencriptado a partir de la matriz
+        //original obtenida en el método anterior
+        for(int i = 0; i<3; i++){
+
+            String textoAux = "";
+
+            for(int j = 0; j<rows; j++, indiceTexto++){
+
+                textoAux+=matriz[i][j];
+            }
+            textoOriginal+=textoAux;
+        }
+
+        return textoOriginal;
+    }
+
+    public String quitarAstericos(String texto){
+
+        String textoSinAsteriscos = "";
+
+        for(int i = 0; i<texto.length(); i++){
+
+            if(!(texto.charAt(i)=='*')){
+
+                textoSinAsteriscos+=texto.charAt(i);
+            }
+        }
+
+        return textoSinAsteriscos;
+    }
+
 }
