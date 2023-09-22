@@ -2,8 +2,9 @@ package co.edu.uniquindio.banco_tcp.client.controller;
 
 import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
 import co.edu.uniquindio.banco_tcp.client.exception.SaldoInicialException;
-import co.edu.uniquindio.banco_tcp.client.exception.SaldoInsuficienteException;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +23,7 @@ public class RegistroController implements Initializable {
     private TextField txtClaveCesar;
 
     @FXML
-    private ComboBox<?> cmbMetodoCifrado;
+    private ComboBox<String> cmbMetodoCifrado;
 
     @FXML
     private Button btnRegistrarme;
@@ -42,8 +43,16 @@ public class RegistroController implements Initializable {
     @FXML
     private TextField txtSaldoInicial;
 
+    private String metodoSeleccionado;
+
+    ObservableList<String> opcionesCifrado;
+
     @FXML
     void seleccionarMetodoCifrado(ActionEvent event) {
+
+        metodoSeleccionado = this.cmbMetodoCifrado.getSelectionModel().getSelectedItem();
+
+        this.txtClaveCesar.setVisible(metodoSeleccionado.equalsIgnoreCase("cesar"));
 
     }
 
@@ -119,6 +128,9 @@ public class RegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         cliente = EchoTCPClient.getInstance();
+        this.txtClaveCesar.setVisible(false);
+        opcionesCifrado = FXCollections.observableArrayList("Cesar","Chino");
+        this.cmbMetodoCifrado.setItems(opcionesCifrado);
 
     }
 }
