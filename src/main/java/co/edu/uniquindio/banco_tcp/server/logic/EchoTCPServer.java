@@ -43,7 +43,6 @@ public class EchoTCPServer {
     private void protocol(Socket serverSideSocket) throws Exception{
 
         String message = fromNetwork.readLine();
-        System.out.println("El cliente dice: " + message);
 
         String answer = "Sisas, lo escucho";
         toNetwork.println(answer);
@@ -64,7 +63,7 @@ public class EchoTCPServer {
                 break;
 
             case "registro":
-               response = serv.registrarUsuario(cadena[1],cadena[2],cadena[3],Double.parseDouble(cadena[4]));  //registro, nombre, cedula, clave, capital
+               response = serv.registrarUsuario(cadena[1],cadena[2],cadena[3],Double.parseDouble(cadena[4]),Integer.parseInt(cadena[5]));  //registro, nombre, cedula, clave, capital
                break;
 
             case "cancelar":

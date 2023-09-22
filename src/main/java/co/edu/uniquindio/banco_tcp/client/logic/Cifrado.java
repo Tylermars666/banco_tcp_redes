@@ -75,7 +75,7 @@ public class Cifrado {
 
     }
 
-    public char[][] llenarMatriz(String texto, int rows){
+    private char[][] llenarMatriz(String texto, int rows){
 
         char [][] matriz = new char[3][rows];                        //Se inicializa una matriz de caracteres con 3 filas y las columnas enviadas por parámetro
         int indiceTexto = 0;
@@ -96,7 +96,7 @@ public class Cifrado {
 
     }
 
-    public String completarTexto(String texto, int diferencia){     //Método para completar el texto con asteriscos
+    private String completarTexto(String texto, int diferencia){     //Método para completar el texto con asteriscos
         //Se recibe por parámetro la diferencia que son los caracteres
         String textoAsterisco = texto;                              //que le hacen falta al texto para completar la matriz
 
@@ -107,7 +107,7 @@ public class Cifrado {
         return textoAsterisco;                                     //Se retorna el texto completado con los asteriscos
     }
 
-    public String obtenerTextoChino(char[][] matriz, int rows){
+    private String obtenerTextoChino(char[][] matriz, int rows){
 
         String textoChino = "";                                   //Este método recorre la matriz en forma de serpiente
         boolean snake = true;                                     //y construye el nuevo texto que será finalmente el encriptado chino

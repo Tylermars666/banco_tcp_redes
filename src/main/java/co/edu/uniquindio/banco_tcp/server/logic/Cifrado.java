@@ -69,7 +69,7 @@ public class Cifrado {
 
     }
 
-    public char[][] construirMatrizOriginal(String texto){
+    private char[][] construirMatrizOriginal(String texto){
 
         boolean snake = true;                                    //Al igual que en el método para encriptar, se recorre la matriz
         int rows = texto.length()/3;                             //en forma de serpiente, pero en este caso en lugar de generar un String
@@ -99,7 +99,7 @@ public class Cifrado {
         return matrizOriginal;
     }
 
-    public String desencriptarMatrizOriginal(char[][]matriz){
+    private String desencriptarMatrizOriginal(char[][]matriz){
 
         int indiceTexto = 0;                                      //Al igual que en el método para encriptar, se recorre
         String textoOriginal = "";                                //el texto para generar la matriz, pero en este caso
@@ -119,7 +119,7 @@ public class Cifrado {
         return textoOriginal;
     }
 
-    public String quitarAstericos(String texto){
+    private String quitarAstericos(String texto){
 
         String textoSinAsteriscos = "";
 

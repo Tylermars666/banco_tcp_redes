@@ -66,7 +66,7 @@ public class UsuarioCrudImplement implements UsuarioCrud {
             return "registrado:"+usuario.getNombre()+":"+usuario.getCuenta().getNumeroCuenta()+":"+usuario.getCuenta().getSaldo(); //existe:nombre:numCuenta:saldo
         }else{
 
-            return "existe";
+            return "existente";
         }
     }
 

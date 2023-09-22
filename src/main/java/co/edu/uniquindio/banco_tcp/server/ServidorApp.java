@@ -3,10 +3,7 @@ package co.edu.uniquindio.banco_tcp.server;
 import co.edu.uniquindio.banco_tcp.server.interfaces.CuentaCrud;
 import co.edu.uniquindio.banco_tcp.server.interfaces.TransaccionCrud;
 import co.edu.uniquindio.banco_tcp.server.interfaces.UsuarioCrud;
-import co.edu.uniquindio.banco_tcp.server.logic.CuentaCrudImplement;
-import co.edu.uniquindio.banco_tcp.server.logic.EchoTCPServer;
-import co.edu.uniquindio.banco_tcp.server.logic.TransaccionCrudImplement;
-import co.edu.uniquindio.banco_tcp.server.logic.UsuarioCrudImplement;
+import co.edu.uniquindio.banco_tcp.server.logic.*;
 
 public class ServidorApp {
 
@@ -46,9 +43,33 @@ public class ServidorApp {
 
     }
 
-    public String registrarUsuario(String nombre, String cedula, String clave, double capitalInicial){
+    public String registrarUsuario(String nombre, String cedula, String clave, double capitalInicial, int claveCesar){
 
-        return userCrud.registrarUsuario(nombre,cedula,clave,capitalInicial);
+        String nombreDesencriptado = "";
+        String cedulaDesencriptada = "";
+        String claveDesencriptada = "";
+
+        System.out.println("Datos cifrados para registro de nuevo usuario: \n" +
+                "Nombre: " + nombre + "\n" +
+                "Cedula: " + cedula + "\n" +
+                "Clave:  " + clave);
+
+        if(claveCesar == 0){
+
+            nombreDesencriptado = Cifrado.getInstance().desencriptarChino(nombre);
+            cedulaDesencriptada = Cifrado.getInstance().desencriptarChino(cedula);
+            claveDesencriptada = Cifrado.getInstance().desencriptarChino(clave);
+
+        }else{
+
+            nombreDesencriptado = Cifrado.getInstance().dencriptarCesar(nombre,claveCesar);
+            cedulaDesencriptada = Cifrado.getInstance().dencriptarCesar(cedula,claveCesar);
+            claveDesencriptada = Cifrado.getInstance().dencriptarCesar(clave,claveCesar);
+        }
+
+        String registroResponse = userCrud.registrarUsuario(nombreDesencriptado,cedulaDesencriptada,claveDesencriptada,capitalInicial);
+        System.out.println("Estado de registro: " + registroResponse.split(":")[0]);
+        return registroResponse;
     }
 
     public String cancelaraCuentaUsuario(String cedula){
