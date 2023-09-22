@@ -61,7 +61,7 @@ public class RegistroController implements Initializable {
 
         try{
             Alert alerta = new Alert(Alert.AlertType.ERROR);
-            String claveCesar = "0";
+            String claveCesar = "";
             String nombre = this.txtNombreApellido.getText();
             String cedula = this.txtCedula.getText();
             String clave = this.txtClave.getText();
@@ -72,15 +72,17 @@ public class RegistroController implements Initializable {
             if(this.metodoSeleccionado.equalsIgnoreCase("cesar")){
 
                 claveCesar = this.txtClaveCesar.getText();
-                if(claveCesar.equalsIgnoreCase("")) throw new CamposVaciosException();
+                if(claveCesar.equalsIgnoreCase("") || claveCesar.equalsIgnoreCase("0")) throw new CamposVaciosException();
 
+            } else if (this.metodoSeleccionado.equalsIgnoreCase("chino")) {
+                claveCesar = "0";
             }
 
             if(capitalInicial<50000) throw new SaldoInicialException();
             if(nombre.equalsIgnoreCase("") || cedula.equalsIgnoreCase("") || clave.equalsIgnoreCase("")) throw new CamposVaciosException();
 
             try {
-                cliente.sendRequest("registro"+":"+nombre+":"+cedula+":"+clave+":"+capitalInicial);    //registro:nombre:cedula:clave:saldo
+                cliente.sendRequest("registro"+":"+nombre+":"+cedula+":"+clave+":"+capitalInicial+":"+claveCesar);    //registro:nombre:cedula:clave:saldo
                 String response = cliente.readResponse();
                 String cadena [] = response.split(":");
 
