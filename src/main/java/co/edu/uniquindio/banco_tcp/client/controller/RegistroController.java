@@ -63,7 +63,7 @@ public class RegistroController implements Initializable {
         try{
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             String claveCesar = "";
-            String nombre = this.txtNombreApellido.getText();
+            String nombre = this.txtNombreApellido.getText().toLowerCase();
             String cedula = this.txtCedula.getText();
             String clave = this.txtClave.getText();
             String capital = this.txtSaldoInicial.getText();
