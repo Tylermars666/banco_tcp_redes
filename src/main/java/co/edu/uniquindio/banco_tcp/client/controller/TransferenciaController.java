@@ -43,8 +43,8 @@ public class TransferenciaController implements UpdateListener, Initializable {
             String cuentaDestino = this.txtCuentaDestino.getText();
             String valorTransferencia = this.txtValorTransferencia.getText();
 
-            if(Double.parseDouble(valorTransferencia)> UsuarioActual.getInstance().getSaldo()) throw new SaldoInsuficienteException();
             if(cuentaDestino.equalsIgnoreCase("") || valorTransferencia.equalsIgnoreCase("")) throw new CamposVaciosException();
+            if(Double.parseDouble(valorTransferencia)> UsuarioActual.getInstance().getSaldo()) throw new SaldoInsuficienteException();
 
             cliente.sendRequest("transferencia:"+UsuarioActual.getInstance().getNumCuenta()+":"+cuentaDestino+":"+valorTransferencia);
             String response = cliente.readResponse();
