@@ -62,4 +62,81 @@ public class Cifrado {
         return textoCesar;                                             //ese String que corresponde a la palabra totalmente encriptada
     }
 
+    public String encriptarChino(String texto){                       //Este método de encriptamiento siempre usará una matriz de 3 filas
+
+        int rows = texto.length()/3;                                 //Entonces se calculan el número de columnas que tendrá la matriz
+        if(texto.length()%3!=0){                                     //Si el tamaño de texto no cabe en la matriz, se agrega una columna más
+            rows = rows + 1;
+        }
+
+        char [][] matriz = llenarMatriz(texto, rows);                //Llenamos la matriz con el texto escrito por el usuario
+        //Enviamos unicamente el texto y el número de columnas, ya que las filas siempre serán 3
+        return obtenerTextoChino(matriz, rows);                      //Retornamos el texto obtenido al recorrer la matriz en forma de serpiente
+
+    }
+
+    public char[][] llenarMatriz(String texto, int rows){
+
+        char [][] matriz = new char[3][rows];                        //Se inicializa una matriz de caracteres con 3 filas y las columnas enviadas por parámetro
+        int indiceTexto = 0;
+
+        if(3*rows>texto.length()){                                   //En caso de que al texto le hagan falta caracteres para completar la matriz
+            texto = completarTexto(texto, 3*rows-texto.length() );   //Se invoca un método para completarlo con asteriscos  EJ: universidad*
+        }
+
+        for(int i = 0; i<3; i++){                                    //Se llena la matriz en el orden normal
+
+            for(int j = 0; j<rows; j++, indiceTexto++){
+
+                matriz[i][j] = texto.charAt(indiceTexto);
+            }
+        }
+
+        return matriz;                                              //Se retorna la matriz ya llenada
+
+    }
+
+    public String completarTexto(String texto, int diferencia){     //Método para completar el texto con asteriscos
+        //Se recibe por parámetro la diferencia que son los caracteres
+        String textoAsterisco = texto;                              //que le hacen falta al texto para completar la matriz
+
+        for(int i = 0; i<diferencia; i++){                          //Se concatenan los asteriscos al texto original
+
+            textoAsterisco+="*";
+        }
+        return textoAsterisco;                                     //Se retorna el texto completado con los asteriscos
+    }
+
+    public String obtenerTextoChino(char[][] matriz, int rows){
+
+        String textoChino = "";                                   //Este método recorre la matriz en forma de serpiente
+        boolean snake = true;                                     //y construye el nuevo texto que será finalmente el encriptado chino
+
+        for(int j = rows-1; j>=0; j--){                           //Siempre se recorren columnas de derecha a izquierda
+
+            String textoChinoAux = "";
+
+            if(snake){                                            //Las filas se recorren de arriba a abajo
+
+                for(int i = 0; i < 3; i++){
+
+                    textoChinoAux += matriz[i][j];
+
+                }
+                snake = false;
+
+            }else {
+
+                for(int i = 2; i>= 0; i--){                      //Y luego de abajo hacia arriba
+
+                    textoChinoAux+=matriz[i][j];
+                }
+                snake = true;
+            }
+            textoChino += textoChinoAux;                         //Se almacena el texto de la concatenación de caracteres resultante
+        }
+        return textoChino;                                       //Y se retorna para imprimirse en la interfaz gráfica
+
+    }
+
 }
