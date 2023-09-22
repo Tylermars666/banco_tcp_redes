@@ -39,7 +39,7 @@ public class RetiroController implements Initializable, UpdateListener {
             String cantidad = this.txtValorRetiro.getText();
             String numCuenta = UsuarioActual.getInstance().getNumCuenta();
 
-            if(cantidad.equalsIgnoreCase("")) throw new CamposVaciosException();
+            if(cantidad.equalsIgnoreCase("") || numCuenta.equalsIgnoreCase("")) throw new CamposVaciosException();
             if(Double.parseDouble(cantidad)>UsuarioActual.getInstance().getSaldo()) throw new SaldoInsuficienteException();
 
             cliente.sendRequest("retiro:"+numCuenta+":"+cantidad);
