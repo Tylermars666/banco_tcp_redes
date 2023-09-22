@@ -63,6 +63,7 @@ public class UsuarioCrudImplement implements UsuarioCrud {
         if(!existeUsuario(cedula)){
             Usuario usuario = new Usuario(nombre, cedula, clave, capitalInicial);
             dataBase.getListaUsuarios().add(usuario);
+            dataBase.getListaCuentas().add(usuario.getCuenta());
             return "registrado:"+usuario.getNombre()+":"+usuario.getCuenta().getNumeroCuenta()+":"+usuario.getCuenta().getSaldo(); //existe:nombre:numCuenta:saldo
         }else{
 
