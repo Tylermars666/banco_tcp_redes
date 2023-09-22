@@ -126,6 +126,7 @@ public class InterfazPrincipalController implements Initializable{
 
         this.lblSaldo.setText(String.valueOf(saldo));
         this.lblNombre.setText(nombre.toUpperCase());
+        UsuarioActual.getInstance().setSaldo(saldo);
 
     }
 }
