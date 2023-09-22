@@ -20,7 +20,7 @@ public class DataBase {
         listaTransacciones = new ArrayList<>();
 
         Usuario omar = new Usuario("omar","1094953624","1234",50000);
-        Usuario victor = new Usuario("victor","94225695","1234",60000);
+        Usuario victor = new Usuario("victor","9846880","1234",60000);
         Cuenta cuentaOmar = omar.getCuenta();
         Cuenta cuentaVictor = victor.getCuenta();
 
