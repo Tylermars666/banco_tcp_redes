@@ -2,6 +2,7 @@ package co.edu.uniquindio.banco_tcp.client.controller;
 
 import co.edu.uniquindio.banco_tcp.client.exception.CamposVaciosException;
 import co.edu.uniquindio.banco_tcp.client.exception.SaldoInicialException;
+import co.edu.uniquindio.banco_tcp.client.logic.Cifrado;
 import co.edu.uniquindio.banco_tcp.client.model.EchoTCPClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,10 +77,17 @@ public class RegistroController implements Initializable {
 
                 claveCesar = this.txtClaveCesar.getText();
                 if(claveCesar.equalsIgnoreCase("") || claveCesar.equalsIgnoreCase("0")) throw new CamposVaciosException();
+                nombre = Cifrado.getInstance().encriptarCesar(nombre, Integer.parseInt(claveCesar));
+                cedula = Cifrado.getInstance().encriptarCesar(cedula,Integer.parseInt(claveCesar));
+                clave = Cifrado.getInstance().encriptarCesar(clave,Integer.parseInt(claveCesar));
 
             } else if (this.metodoSeleccionado.equalsIgnoreCase("chino")) {
                 claveCesar = "0";
+                nombre = Cifrado.getInstance().encriptarChino(nombre);
+                cedula = Cifrado.getInstance().encriptarChino(cedula);
+                clave = Cifrado.getInstance().encriptarChino(clave);
             }
+
 
 
 
