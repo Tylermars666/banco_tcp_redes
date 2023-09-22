@@ -26,7 +26,7 @@ public class Cifrado {
         int indiceAux;
 
         for(int i = 0; i<= texto.length()-1; i++){                       //Se toma cada letra del texto ingresado y se compara
-            //cada una con todas las letras del alfabeto
+                                                                         //cada una con todas las letras del alfabeto
             String caracterEncriptado = "";
 
             for(int j = 0; j<=ALFABETO.length()-1; j++){
@@ -37,16 +37,16 @@ public class Cifrado {
 
                 }else {
                     if(texto.charAt(i)==ALFABETO.charAt(j)){          //Se valida entonces si la letra del texto es igual a la letra del alfabeto
-                        //Se tiene en cuenta el índice de la letra del alfabeto
+                                                                      //Se tiene en cuenta el índice de la letra del alfabeto
                         if(j + clave>ALFABETO.length()-1){            //Si este indice sumado a la clave es mayor que el tamaño del alfabeto
 
                             indiceAux = Math.abs(36 - (j + clave));             //Entonces se procede a calcular el indice correspondiente para esa letra
-                            //Es decir que le da la vuelta al alfabeto y vuelve a empezar por las primeras letras
+                                                                                //Es decir que le da la vuelta al alfabeto y vuelve a empezar por las primeras letras
                         }else{
 
                             if(j + clave < 0){                        //En este caso se valida si el indice de la letra del alfabeto
                                 indiceAux = 36 + (j + clave);         //sumado a la clave, es menor que cero, es decir, la clave es negativa
-                                //Se calcula el nuevo indice que en este caso dará la vuelta al alfabeto y llegará a las ultimas letras
+                                                                       //Se calcula el nuevo indice que en este caso dará la vuelta al alfabeto y llegará a las ultimas letras
                             }else{
 
                                 indiceAux = j + clave;                //En caso de que ninguno de los casos anteriores se cumpla, entonces simplemente
