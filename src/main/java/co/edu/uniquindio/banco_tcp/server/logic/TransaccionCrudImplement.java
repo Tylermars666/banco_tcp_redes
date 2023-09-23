@@ -48,6 +48,9 @@ public class TransaccionCrudImplement implements TransaccionCrud {
 
             }
         }
+        System.out.println("RETIRO REALIZADO \n" +
+                "Cuenta: " + numCuenta + "\n" +
+                "Cantidad: " + cantidad);
         return saldoActualizado;
     }
 
@@ -64,6 +67,10 @@ public class TransaccionCrudImplement implements TransaccionCrud {
             origen.setSaldo(origen.getSaldo()-cantidad);
             destino.setSaldo(destino.getSaldo()+cantidad);
             destino.getListaTransacciones().add(new Transaccion(origen.getNumeroCuenta(),cantidad));
+            System.out.println("TRANSFERENCIA REALIZADA \n" +
+                    "Cuenta origen: " + numCuentaOrigen + "\n" +
+                    "Cuenta destino: "+ numCuentaDestino + "\n" +
+                    "Cantidad: " + cantidad);
             return "exito:"+(origen.getSaldo());
 
         }

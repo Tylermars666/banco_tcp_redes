@@ -42,6 +42,7 @@ public class CuentaCrudImplement implements CuentaCrud {
             if(cuenta.getNumeroCuenta().equalsIgnoreCase(numCuenta)){
 
                 dataBase.getListaCuentas().remove(cuenta);
+                System.out.println("Cuenta " + numCuenta + " eliminada");
                 return true;
             }
         }

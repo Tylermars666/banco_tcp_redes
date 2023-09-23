@@ -53,7 +53,9 @@ public class UsuarioCrudImplement implements UsuarioCrud {
         }catch (NullPointerException npe){
             datosUsuario = "error:user:not:found:here";
         }
-
+        System.out.println("USUARIO LOGGEADO \n" +
+                "Nombre: " + datosUsuario.split(":")[0] + "\n" +
+                "Cuenta: " + datosUsuario.split(":")[3]);
         return datosUsuario;
     }
 
@@ -116,6 +118,7 @@ public class UsuarioCrudImplement implements UsuarioCrud {
 
                 usuario.setNombre(nombre);
                 usuario.getCuenta().setClave(clave);
+                System.out.println("El usuario con cédula " + cedula + " ha sido actualizado");
                 return "exito:"+nombre;
 
             }
